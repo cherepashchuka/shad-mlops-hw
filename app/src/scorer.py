@@ -11,6 +11,8 @@ def make_pred(data, path_to_file):
     result = pd.DataFrame(data['client_id'])
     result['preds'] = None
 
+    data = data.drop('client_id',axis=1)
+
     data_np = data.to_numpy()
 
     predictions = treelite.gtil.predict(model, data=data_np)

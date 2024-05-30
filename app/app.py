@@ -1,5 +1,6 @@
 import os
 
+from flask_cors import CORS
 from flask import Flask, request, render_template, redirect, url_for, send_from_directory
 from werkzeug.utils import secure_filename
 from datetime import datetime
@@ -17,6 +18,8 @@ def allowed_file(filename):
 def create_app():
     app = Flask(__name__)
 
+    CORS(app)
+
     @app.route('/upload', methods=['GET', 'POST'])
     def upload():
         if request.method == 'POST':
@@ -27,7 +30,7 @@ def create_app():
                 filename = secure_filename(file.filename)
                 
                 # Store imported file locally
-                new_filename = f'{filename.split(".")[0]}_{str(datetime.now())}.csv'
+                new_filename = f'{filename.split(".")[0]}_{str(datetime.now().strftime('%m_%d_%y_%H_%M_%S'))}.csv'
                 save_location = os.path.join('input', new_filename)
                 file.save(save_location)
                 

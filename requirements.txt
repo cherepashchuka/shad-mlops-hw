@@ -9,3 +9,4 @@ Werkzeug==2.1.2
 treelite==4.2.1
 scipy==1.13.1
 packaging==24.0
+FLask-Cors==4.0.1
