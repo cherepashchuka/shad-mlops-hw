@@ -5,7 +5,6 @@ from flask import Flask, request, render_template, redirect, url_for, send_from_
 from werkzeug.utils import secure_filename
 from datetime import datetime
 
-# Import modelling scripts
 import src.preprocessing as preprocessing
 import src.scorer as scorer
 import src.tools as tools
@@ -29,8 +28,10 @@ def create_app():
     def upload():
         if request.method == 'POST':
             
-            # Import file
+            # Clear folders
             tools.clear_folders()
+
+            #Import file
             file = request.files['file']
             if file and allowed_file(file.filename):
                 filename = secure_filename(file.filename)
@@ -47,7 +48,7 @@ def create_app():
                 preprocessed_df = preprocessing.run_preproc(input_df)
 
                 # Run scorer to get submission file for competition
-                submission, json, figure = scorer.make_pred(preprocessed_df, save_location)
+                submission, _, _ = scorer.make_pred(preprocessed_df, save_location)
                 submission.to_csv(save_location.replace('input', 'output'), index=False)
 
                 return redirect(url_for('download'))
