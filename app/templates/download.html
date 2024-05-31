@@ -1,3 +1,30 @@
-{% for filename in files %}
-<a href="{{ url_for('download_file', filename=filename) }}">{{ filename }}</a><br />
-{% endfor %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/style.css">
+    <title>MTS Churn Prediction</title>
+
+</head>
+
+<body>
+    <div class="container">
+        <img src="static/img/MTC_Logo_RGB.png" alt="Logo" class="logo">
+        <div class="title">
+            <span class="MTSUltraExtended-Black">MTS</span>
+            <span class="MTSUltraExtended-Bold">Churn</span>
+            <span class="MTSUltraExtended-Bold">Prediction</span>
+        </div>
+        <div class="button-container">
+            {% for filename in files %}
+            <a href="{{ url_for('download_file', filename=filename) }}" download={{filename}}, class="button">{{ filename }}</a>
+            {% endfor %}
+        </div>
+
+    </div>
+
+</body>
+
+</html>

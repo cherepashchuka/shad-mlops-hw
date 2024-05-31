@@ -6,6 +6,9 @@ itsdangerous==2.1.2
 Jinja2==3.1.2
 MarkupSafe==2.1.1
 Werkzeug==2.1.2
-treelite==4.2.1
 scipy==1.13.1
 packaging==24.0
+FLask-Cors==4.0.1
+xgboost==2.0.3
+scikit-learn==1.5.0
+seaborn==0.13.2
